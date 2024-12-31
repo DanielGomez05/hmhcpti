@@ -11,8 +11,9 @@
 <body>
 <header class= "flex items-center justify-between p-4 bg-white shadow-md">
   <div class="flex items-center">
-  <img src="logo.png" alt="Logo" class="h-10 mr-2">
-  <h1 class="text-green-600 font-bond text-lg">Herramienta para medir la Huella de Carbono de Proyectos de TI</h1>
+  <img src="/images/Pie.png" alt="Logo" class="w-10 mx-auto">
+  <h1 class="font-mon font-light text-green-700">Herramienta para medir la huella de carbono de los proyectos de TI</h1>
+
   </div>
   <nav>
     <ul class="flex space-x-6">
@@ -22,9 +23,72 @@
     </ul>
   </nav>
   <div>
-    <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Probar ahora</button>
-    <button class="border border-green-600 text-green-600 px-4 py-2 rounded hover:bg-green-600 hover:text-white">Iniciar Sesión</button>
+    <button class="bg-gray-900 text-white px-4 py-2 rounded hover:bg-green-600">Probar ahora</button>
+    <button class="border border-green-600 text-blue-950 px-4 py-2 rounded hover:bg-gray-900 hover:text-white">Iniciar Sesión</button>
   </div>
 </header>
+<main id="app" class="p-10 bg-white">
+	<div class="flex flex-col md:flex-row items-center justify-between">
+	  <!-- Texto principal -->
+	  <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+		<div class="text-3xl md:text-4xl font-light font-did mb-4 text-gray-800">
+		  Conoce tu huella de carbono, entrega informacion valiosa y toma medidas con
+		  <div class="text-green-700 font-light">HMHCPTI</div>
+		</div>
+		<p class="text-gray-600 mb-6 font-man font-light">
+		  Nuestra herramienta te ayuda a medir y monitorear la huella de carbono de tus proyectos de TI,
+		  impulsando tu compromiso con la sostenibilidad.
+		</p>
+		<div class="flex justify-center md:justify-start space-x-4">
+		  <button @click="probarAhora" class="bg-gray-900 text-white px-6 py-3 rounded hover:bg-gray-700">
+			Probar ahora
+		  </button>
+		  <button @click="mostrarMas" class="border border-gray-400 text-gray-600 px-6 py-3 rounded hover:bg-gray-200">
+			Mostrar más
+		  </button>
+		</div>
+	  </div>
+  
+	  <!-- Imagen -->
+	  <div class="md:w-1/2 flex justify-center md:justify-end">
+		<img src="/images/Icono1.png" alt="Imagen1" class="w-96 pr-20 md:w-96 ">
+	  </div>
+	</div>
+  </main>
+<footer class="bg-gray-900 text-gray-300 p-8">
+	<div class="flex flex-col it">
+		<img src="/images/Pie.png" alt="Imagen1" class="w-10 mx-auto">
+		<h1 class="font-mon font-light text-green-700 text-center">Herramienta para medir la huella de carbono de los proyectos de TI</h1>
+	</div>
+	<div>
+		<h3 class="font-bold mb-2">Acerca de</h3>
+		<ul>
+			<li><a href="#" class="text-gray-300 hover:text-green-600">¿Qué es HMHCPTI?</a></li>
+			<li><a href="#" class="text-gray-300 hover:text-green-600">¿Quiénes somos?</a></li>
+			<li><a href="#" class="text-gray-300 hover:text-green-600">Misión</a></li>
+			<li><a href="#" class="text-gray-300 hover:text-green-600">Visión</a></li>
+		</ul>
+	
+		<div>
+			<h3 class="font-bold mb-2">Contacto</h3>
+			<p>Tel: (+52) 55-5555-5555</p>
+			<p>Correo: contacto@hmhcp.ti</p>
+		</div>
+	</div>
+	<p class="text-center mt-8">&copy: 2024 HMHCPTI. Todos los derechos reservados.</p>
+</footer>
+<script>
+	const{createApp}=Vue;
+	createApp({
+		methods:{
+			probarAhora(){
+				alert('Redirigiendo a la herramienta para medir la huella de carbono...');
+			},
+			mostrarMas(){
+				alert('Mostrando más información...');
+			}
+		}
+	}).mount('#app');
+</script>
 </body>
 </html>
