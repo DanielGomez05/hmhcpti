@@ -1,83 +1,148 @@
 <!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width-device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HMHCPTI</title>
+  
+  <!-- Fuente Century Gothic -->
+  <link href="https://fonts.cdnfonts.com/css/century-gothic" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Vue.js -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  
+  <style>
+    /* Custom styles para corregir diferencias */
+    .font-century { font-family: 'Century Gothic', sans-serif; }
+    .text-lime-500 { color: #84cc16; }
+  </style>
 </head>
 
-<body>
-<header class= "flex items-center justify-between p-4 bg-white shadow-md">
-  <div class="flex items-center">
-  <img src= "images/Pie.png" alt="Logo" class="w-10 mx-auto">
-  <h1 class="font-mon font-light text-green-700">Herramienta para medir la huella de carbono de los proyectos de TI</h1>
+<body class="font-century bg-white">
+  <!-- Header Navigation -->
+  <header class="relative bg-white shadow-md">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <img src="images/Pie.png" alt="Logo" class="w-14 h-24">
+        <h1 class="text-lime-500 text-xl underline">
+          Herramienta para medir la huella de carbono de los<br>Proyectos de TI
+        </h1>
+      </div>
 
-  </div>
-  <nav>
-    <ul class="flex space-x-6">
-      <li><a href="#" class="text-gray-700 hover:text-green-600">Inicio</a></li>
-      <li><a href="#" class="text-gray-700 hover:text-green-600">¿Qué es HMHCPTI?</a></li>
-      <li><a href="#" class="text-gray-700 hover:text-green-600">Recursos</a></li>
-    </ul>
-  </nav>
-  <div>
-    <button class="bg-gray-900 text-white px-4 py-2 rounded hover:bg-green-600">Probar ahora</button>
-    <button class="border border-green-600 text-blue-950 px-4 py-2 rounded hover:bg-gray-900 hover:text-white">Iniciar Sesión</button>
-  </div>
-</header>
-<main id="app" class="pr-20 bg-white">
-	<div class="flex flex-col md:flex-row items-center justify-between">
-	  <!-- Texto principal -->
-	  <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
-		<div class="text-3xl md:text-4xl font-light font-did mb-4 text-gray-800">
-		  Conoce tu huella de carbono, entrega informacion valiosa y toma medidas con
-		  <div class="text-green-700 font-light">HMHCPTI</div>
-		</div>
-		<p class="text-gray-600 mb-6 font-man font-light">
-		  Nuestra herramienta te ayuda a medir y monitorear la huella de carbono de tus proyectos de TI,
-		  impulsando tu compromiso con la sostenibilidad.
-		</p>
-		<div class="flex justify-center md:justify-start space-x-4">
-		  <button @click="probarAhora" class="bg-gray-900 text-white px-6 py-3 rounded hover:bg-gray-700">
-			Probar ahora
-		  </button>
-		  <button @click="mostrarMas" class="border border-gray-400 text-gray-600 px-6 py-3 rounded hover:bg-gray-200">
-			Mostrar más
-		  </button>
-		</div>
-	  </div>
-  
-	  <!-- Imagen -->
-	  <div class="md:w-1/2 flex justify-center md:justify-end">
-		<img src="images/Icono1.png" alt="Imagen1" class="w-96 pr-20 md:w-96 ">
-	  </div>
-	</div>
+      <nav class="hidden lg:flex items-center space-x-7">
+        <a href="#" class="text-lime-500 text-xl">Inicio</a>
+        <a href="#" class="text-black text-xl underline">¿Qué es HMHCPTI?</a>
+        <a href="#" class="text-black text-xl">Recursos</a>
+        <div class="flex space-x-4">
+          <button class="bg-slate-900 text-white px-6 py-3.5 rounded-lg shadow-sm">
+            Probar Ahora
+          </button>
+          <button class="border-2 border-slate-900 px-6 py-3.5 rounded-lg shadow-sm">
+            Iniciar Sesión
+          </button>
+        </div>
+      </nav>
+    </div>
+    <div class="border-b border-neutral-200 w-full"></div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="app" class="container mx-auto px-6 py-16">
+    <div class="flex flex-col lg:flex-row items-center gap-16">
+      <!-- Text Content -->
+      <div class="lg:w-1/2 space-y-10">
+        <h2 class="text-5xl leading-tight">
+          <span class="text-black">Conoce tu huella de Carbono,<br>entrega información valiosa<br>y toma medidas con </span>
+          <span class="text-lime-500">HMHCPTI</span>
+        </h2>
+        
+        <p class="text-2xl text-black/75 leading-9">
+          Nuestra herramienta te ayuda a medir y monitorear la huella de carbono de tus proyectos de TI, 
+          impulsando tu compromiso con la sostenibilidad.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button class="bg-slate-900 text-white px-6 py-3 rounded-lg text-2xl">
+            Probar ahora
+          </button>
+          <button class="bg-neutral-200 text-black px-6 py-3 rounded-lg shadow-sm text-2xl">
+            Mostrar más
+          </button>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="lg:w-1/2">
+        <img src="images/Icono1.png" alt="Huella de Carbono" class="w-full max-w-2xl">
+      </div>
+    </div>
   </main>
 
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-white py-12 mt-20">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <!-- Logo Section -->
+        <div class="flex flex-col items-center md:items-start">
+          <img src="images/Pie.png" alt="Logo" class="w-14 h-24 mb-4">
+          <h2 class="text-lime-500 text-xl text-center md:text-left">
+            Herramienta para medir la huella de carbono de los<br>Proyectos de TI
+          </h2>
+        </div>
 
-<footer class="bg-gray-900 text-gray-300 p-8">
-	<div class="flex flex-col it">
-		<img src="images/Pie.png" alt="Imagen1" class="w-10 mx-auto">
-		<h1 class="font-mon font-light text-green-700 text-center">Herramienta para medir la huella de carbono de los proyectos de TI</h1>
-	</div>
-	<div>
-		<h3 class="font-bold mb-2">Acerca de</h3>
-		<ul>
-			<li><a href="#" class="text-gray-300 hover:text-green-600">¿Qué es HMHCPTI?</a></li>
-			<li><a href="#" class="text-gray-300 hover:text-green-600">¿Quiénes somos?</a></li>
-			<li><a href="#" class="text-gray-300 hover:text-green-600">Misión</a></li>
-			<li><a href="#" class="text-gray-300 hover:text-green-600">Visión</a></li>
-		</ul>
-	
-		<div>
-			<h3 class="font-bold mb-2">Contacto</h3>
-			<p>Tel: (+52) 55-5555-5555</p>
-			<p>Correo: contacto@hmhcp.ti</p>
-		</div>
-	</div>
-	<p class="text-center mt-8">&copy: 2024 HMHCPTI. Todos los derechos reservados.</p>
-</footer>
+        <!-- Acerca de -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Acerca de</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="hover:text-lime-500">¿Qué es HMHCPTI?</a></li>
+            <li><a href="#" class="hover:text-lime-500">¿Quiénes somos?</a></li>
+            <li><a href="#" class="hover:text-lime-500">Misión</a></li>
+            <li><a href="#" class="hover:text-lime-500">Visión</a></li>
+            <li><a href="#" class="hover:text-lime-500">Mapa del Sitio</a></li>
+          </ul>
+        </div>
+
+        <!-- Contacto -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Contacto</h3>
+          <div class="space-y-3">
+            <p>Tel: (+52) 55-5555-5555</p>
+            <p>Lunes a sábado de 9:00am a 5:00 pm</p>
+            <p>contacto@hmhcp.ti</p>
+            <p>soporte@hmhcp.ti</p>
+          </div>
+        </div>
+
+        <!-- Social Icons -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Síguenos</h3>
+          <div class="flex space-x-4">
+            <!-- Inserta aquí tus íconos sociales SVG -->
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="#828282">
+              <!-- Tus paths SVG aquí -->
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-neutral-200 pt-8 text-center">
+        <p>&copy; 2024 HMHCPTI. Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vue Initialization -->
+  <script>
+    const { createApp } = Vue
+    createApp({
+      methods: {
+        probarAhora() { /* Lógica aquí */ },
+        mostrarMas() { /* Lógica aquí */ }
+      }
+    }).mount('#app')
+  </script>
 </body>
 </html>
