@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: ["class"],
-	content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "*.{js,ts,jsx,tsx,mdx}"],
+	content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}", "*.{js,ts,jsx,tsx,mdx}"],
 	theme: {
 	  container: {
 		center: true,
@@ -18,20 +18,20 @@ module.exports = {
 		  background: "hsl(var(--background))",
 		  foreground: "hsl(var(--foreground))",
 		  primary: {
-			DEFAULT: "#9fb816",
-			foreground: "#ffffff",
+			DEFAULT: "hsl(var(--primary))",
+			foreground: "hsl(var(--primary-foreground))",
 		  },
 		  secondary: {
-			DEFAULT: "#001e2b",
-			foreground: "#ffffff",
+			DEFAULT: "hsl(var(--secondary))",
+			foreground: "hsl(var(--secondary-foreground))",
 		  },
 		  destructive: {
 			DEFAULT: "hsl(var(--destructive))",
 			foreground: "hsl(var(--destructive-foreground))",
 		  },
 		  muted: {
-			DEFAULT: "#e6e6e6",
-			foreground: "#828282",
+			DEFAULT: "hsl(var(--muted))",
+			foreground: "hsl(var(--muted-foreground))",
 		  },
 		  accent: {
 			DEFAULT: "hsl(var(--accent))",
@@ -44,9 +44,6 @@ module.exports = {
 		  card: {
 			DEFAULT: "hsl(var(--card))",
 			foreground: "hsl(var(--card-foreground))",
-		  },
-		  lime: {
-			500: "#84cc16",
 		  },
 		},
 		borderRadius: {
@@ -70,6 +67,5 @@ module.exports = {
 		},
 	  },
 	},
-	plugins: [],
+	plugins: [require("tailwindcss-animate")],
   }
-  
