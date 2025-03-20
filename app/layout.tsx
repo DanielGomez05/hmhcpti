@@ -1,4 +1,4 @@
-import React from "react"
+import type React from "react"
 import "./globals.css"
 import type { Metadata } from "next"
 
@@ -14,6 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
+      <head>
+        <link href="https://fonts.cdnfonts.com/css/century-gothic" rel="stylesheet" />
+      </head>
       <body>{children}</body>
     </html>
   )

@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	darkMode: ["class"],
-	content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}", "*.{js,ts,jsx,tsx,mdx}"],
+	darkMode: "class",
+	content: ["./app/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}", "*.{js,ts,jsx,tsx,mdx}"],
 	theme: {
 	  container: {
 		center: true,
@@ -45,6 +45,12 @@ module.exports = {
 			DEFAULT: "hsl(var(--card))",
 			foreground: "hsl(var(--card-foreground))",
 		  },
+		  lime: {
+			500: "#84cc16",
+		  },
+		  slate: {
+			900: "#0f172a",
+		  },
 		},
 		borderRadius: {
 		  lg: "var(--radius)",
@@ -67,5 +73,7 @@ module.exports = {
 		},
 	  },
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [],
   }
+  
+  
