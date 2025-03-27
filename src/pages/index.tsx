@@ -14,10 +14,7 @@ export default function Home() {
           <div className="lg:w-1/2 space-y-6 md:space-y-10">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl leading-tight">
               <span className="text-black">
-                Conoce tu huella de Carbono,
-                <br />
-                entrega información valiosa
-                <br />y toma medidas con{" "}
+                Conoce tu huella de Carbono,entrega información valiosa y toma medidas con 
               </span>
               <span className="text-lime-500">HMHCPTI</span>
             </h2>
