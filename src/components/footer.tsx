@@ -18,9 +18,7 @@ export default function Footer() {
               priority
             />
             <h2 className="text-lime-500 text-center md:text-left text-lg leading-relaxed">
-              Herramienta para medir la huella
-              <br />
-              de carbono de los Proyectos de TI
+              Herramienta para medir la huella |de carbono de los Proyectos de TI
             </h2>
           </div>
 
