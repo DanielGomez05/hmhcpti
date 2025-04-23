@@ -17,7 +17,7 @@ export default function Header() {
         {/* Navegación */}
         <nav className="hidden lg:flex gap-6 items-center">
           <Link href="/" className="hover:text-lime-600 text-black text-base">Inicio</Link>
-          <Link href="/acerca-de" className="hover:text-lime-600 text-black text-base">¿Qué es HMHCPTI?</Link>
+          <Link href="/acerca_de" className="hover:text-lime-600 text-black text-base">¿Qué es HMHCPTI?</Link>
           <Link href="#" className="hover:text-lime-600 text-black text-base">Recursos</Link>
           <button className="bg-slate-900 text-white px-4 py-2 rounded-md text-sm hover:bg-slate-800">Probar Ahora</button>
           <button className="border border-slate-900 px-4 py-2 rounded-md text-sm hover:bg-slate-100">Iniciar Sesión</button>
