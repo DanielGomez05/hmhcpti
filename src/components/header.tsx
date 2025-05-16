@@ -36,12 +36,12 @@ export default function Header() {
 
         {/* Navegación */}
         <nav className="hidden lg:flex gap-6 items-center text-black dark:text-white">
-          <Link href="/" className="text-inherit hover:text-[#9FB816]">Inicio</Link>
+          <Link href="/index" className="text-inherit hover:text-[#9FB816]">Inicio</Link>
           <Link href="/acerca_de" className="text-inherit hover:text-[#9FB816]">¿Qué es HMHCPTI?</Link>
           <Link href="#" className="text-inherit hover:text-[#9FB816]">Recursos</Link>
           <button className="bg-slate-900 text-white px-4 py-2 rounded-md text-sm hover:bg-slate-800">Probar Ahora</button>
           <button className="border border-slate-900 dark:border-white text-slate-900 dark:text-white px-4 py-2 rounded-md text-sm hover:bg-slate-100 dark:hover:bg-slate-800">
-            Iniciar Sesión
+            <Link href="/iniciar_sesion" className="...">Iniciar Sesión</Link>
           </button>
           <button
             aria-label="Cambiar tema"
