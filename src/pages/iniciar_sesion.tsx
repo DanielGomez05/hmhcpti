@@ -33,7 +33,7 @@ export default function IniciarSesion() {
       if (!res.ok) {
         setMensaje(datos.error || "Error al iniciar sesión.")
       } else {
-        localStorage.setItem("primeraVez", "true")
+        localStorage.setItem("nombreUsuario", datos.usuario.nombre)
         router.push("/bienvenida")
       }
     } catch {
