@@ -11,7 +11,7 @@ const nextConfig = {
 	  // Por ejemplo: domains: ['images.unsplash.com', 'example.com']
 	},
   
-	output: "export",
+	//output: "export",
   
 	// Configuración de internacionalización (i18n) si la necesitas
 	// i18n: {
