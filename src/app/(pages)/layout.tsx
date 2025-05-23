@@ -1,4 +1,8 @@
 import type { Viewport } from 'next';
+import { ClerkProvider } from '@clerk/nextjs';
+
+import { fontMono, fontSans } from '@/app/lib/fonts';
+import { cn } from '@/app/lib/utils';
 
 import '@/app/styles/globals.css';
 
@@ -16,10 +20,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className="bg-background min-h-screen font-sans antialiased">
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+        <body
+          className={cn(
+            'bg-background min-h-screen font-sans antialiased',
+            fontSans.variable,
+            fontMono.variable
+          )}
+        >
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

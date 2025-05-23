@@ -9,9 +9,11 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@clerk/nextjs": "^6.20.0",
 		"@ianvs/prettier-plugin-sort-imports": "^4.4.1",
 		"@prisma/client": "^6.8.2",
 		"@radix-ui/react-slot": "^1.2.3",
+		"@t3-oss/env-nextjs": "^0.13.4",
 		"@tailwindcss/postcss": "^4.1.7",
 		"bcrypt": "^6.0.0",
 		"bcryptjs": "^3.0.2",
@@ -23,7 +25,8 @@
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"react": "^18",
 		"react-dom": "^18",
-		"tailwind-merge": "^3.3.0"
+		"tailwind-merge": "^3.3.0",
+		"zod": "^3.25.23"
 	},
 	"devDependencies": {
 		"@types/bcrypt": "^5.0.2",

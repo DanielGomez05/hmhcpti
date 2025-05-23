@@ -1,0 +1,40 @@
+import * as React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+
+import { cn } from '@/app/lib/utils';
+
+const shellVariants = cva('grid items-center gap-8 pb-8 pt-6 md:py-8', {
+  variants: {
+    variant: {
+      default: 'container p-0 sm:px-4',
+      screen: 'min-h-screen w-full p-0 md:p-0',
+      centered: 'container flex h-[100dvh] max-w-2xl flex-col justify-center',
+      markdown: 'container max-w-3xl py-8 md:py-10 lg:py-10',
+      scroll:
+        'mx-auto min-h-[calc(100dvh-4rem)] w-full max-w-[64rem] scroll-m-16',
+      sidebar: '',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+});
+
+interface ShellProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof shellVariants> {
+  as?: React.ElementType;
+}
+
+const Shell = ({
+  className,
+  as: Comp = 'section',
+  variant,
+  ...props
+}: ShellProps) => {
+  return (
+    <Comp className={cn(shellVariants({ variant }), className)} {...props} />
+  );
+};
+
+export { Shell, shellVariants };
