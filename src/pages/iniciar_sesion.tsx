@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import Footer from "../components/footer"
 import Link from "next/link"
@@ -9,7 +9,15 @@ export default function IniciarSesion() {
   const [contrasena, setContrasena] = useState("")
   const [mensaje, setMensaje] = useState("")
   const [cargando, setCargando] = useState(false)
+  const [mensajeVerificado, setMensajeVerificado] = useState("") // Nuevo estado para mensaje de verificación
   const router = useRouter()
+
+  // Detectamos si el usuario ha verificado su correo
+  useEffect(() => {
+    if (router.query.verificado === "true") {
+      setMensajeVerificado("Tu correo ha sido verificado exitosamente. Ya puedes iniciar sesión.")
+    }
+  }, [router.query.verificado]) // Se ejecuta cuando cambia el query
 
   const manejarLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -51,6 +59,14 @@ export default function IniciarSesion() {
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 bg-white dark:bg-[#001E2B] shadow-md rounded-lg overflow-hidden">
           <div className="w-full lg:w-1/2 px-6 py-10 space-y-6">
             <h2 className="text-3xl font-bold text-center lg:text-left">Iniciar Sesión</h2>
+
+            {/* Mensaje de correo verificado */}
+            {mensajeVerificado && (
+              <div className="text-center text-green-600 mb-4">
+                {mensajeVerificado}
+              </div>
+            )}
+
             <form className="space-y-4" onSubmit={manejarLogin}>
               <div>
                 <label htmlFor="correo" className="block text-lg font-medium">Correo electrónico:</label>
@@ -81,6 +97,7 @@ export default function IniciarSesion() {
               </button>
               {mensaje && <p className="text-sm text-center text-red-500">{mensaje}</p>}
             </form>
+
             <div className="text-sm text-center space-y-1">
               <p>
                 ¿No puedes ingresar? <Link href="/recuperar_contrasena" className="text-[#9FB816] hover:underline">Recuperar contraseña</Link>

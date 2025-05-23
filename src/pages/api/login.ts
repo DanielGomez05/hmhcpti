@@ -1,56 +1,26 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import bcrypt from 'bcryptjs'
-import prisma from '../../lib/prisma'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Método no permitido' })
   }
 
-  const { correo, contrasena } = req.body
-
-  if (!correo || !contrasena) {
-    return res.status(400).json({ error: 'Por favor ingresa correo y contraseña.' })
-  }
-
   try {
-    const usuario = await prisma.usuario.findUnique({
-      where: { correo },
-      select: {
-        id: true,
-        nombre: true,
-        correo: true,
-        contrasena: true,
-        creadoEn: true,
-        correo_verificado: true
-      }
+    const API_URL = process.env.NEXT_PUBLIC_API_URL
+    const response = await fetch(`${API_URL}/api/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(req.body),
     })
 
-    if (!usuario) {
-      return res.status(404).json({ error: 'Usuario no encontrado.' })
+    const data = await response.json()
+
+    if (!response.ok) {
+      return res.status(response.status).json(data)
     }
 
-    const contrasenaValida = await bcrypt.compare(contrasena, usuario.contrasena)
-
-    if (!contrasenaValida) {
-      return res.status(401).json({ error: 'Contraseña incorrecta.' })
-    }
-
-    if (!usuario.correo_verificado) {
-      return res.status(403).json({ error: 'Debes verificar tu correo antes de iniciar sesión.' })
-    }
-
-    // ✅ Aquí podrías generar una sesión, token, etc.
-    return res.status(200).json({
-      mensaje: 'Inicio de sesión exitoso.',
-      usuario: {
-        id: usuario.id,
-        nombre: usuario.nombre,
-        correo: usuario.correo
-      },
-      bienvenida: true
-    })
+    return res.status(200).json(data)
   } catch (error) {
-    return res.status(500).json({ error: 'Error en el servidor. Inténtalo de nuevo.' })
+    return res.status(500).json({ error: 'Error en el servidor' })
   }
 }
