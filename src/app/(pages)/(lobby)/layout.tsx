@@ -1,12 +1,19 @@
+import { currentUser } from '@clerk/nextjs/server';
+
+import { SiteHeader } from '@/app/components/layouts/site-header';
+
 import Footer from './components/footer';
-import Header from './components/header';
 
 interface LobbyLayoutProps extends React.PropsWithChildren {}
 
 export default async function LobbyLayout({ children }: LobbyLayoutProps) {
+  const user = await currentUser();
+
+  console.log(user);
+
   return (
     <>
-      <Header />
+      <SiteHeader user={user} />
       {children}
       <Footer />
     </>

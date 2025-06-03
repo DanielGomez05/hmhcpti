@@ -3,6 +3,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 
 import { fontMono, fontSans } from '@/app/lib/fonts';
 import { cn } from '@/app/lib/utils';
+import { ThemeProvider } from '@/app/components/providers/theme-provider';
 
 import '@/app/styles/globals.css';
 
@@ -24,12 +25,19 @@ export default function RootLayout({
       <html lang="en" className="scroll-smooth" suppressHydrationWarning>
         <body
           className={cn(
-            'bg-background min-h-screen font-sans antialiased',
+            'min-h-screen bg-background font-sans antialiased',
             fontSans.variable,
             fontMono.variable
           )}
         >
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

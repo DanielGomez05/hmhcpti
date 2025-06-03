@@ -8,10 +8,10 @@ const shellVariants = cva('grid items-center gap-8 pb-8 pt-6 md:py-8', {
     variant: {
       default: 'container p-0 sm:px-4',
       screen: 'min-h-screen w-full p-0 md:p-0',
-      centered: 'container flex h-[100dvh] max-w-2xl flex-col justify-center',
+      centered: 'container flex h-dvh max-w-2xl flex-col justify-center',
       markdown: 'container max-w-3xl py-8 md:py-10 lg:py-10',
       scroll:
-        'mx-auto min-h-[calc(100dvh-4rem)] w-full max-w-[64rem] scroll-m-16',
+        'mx-auto min-h-[calc(100dvh-4rem)] w-full max-w-5xl scroll-m-16',
       sidebar: '',
     },
   },

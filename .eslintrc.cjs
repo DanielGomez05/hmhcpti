@@ -35,11 +35,12 @@ const config = {
       },
     ],
     'react/self-closing-comp': 'warn',
+    'tailwindcss/no-custom-classname': 'off'
   },
   settings: {
     tailwindcss: {
       callees: ['cn', 'cva'],
-      config: './tailwind.config.ts',
+      config: './tailwind.config.js',
       classRegex: '^(class(Name)?|tw)$',
     },
     next: {

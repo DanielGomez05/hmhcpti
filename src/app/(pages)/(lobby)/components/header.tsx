@@ -29,13 +29,13 @@ export default function Header() {
         {/* Logo + Nombre */}
         <Link href="/" className="flex items-center gap-4">
           <Image src="/images/Pie.png" alt="Logo" width={56} height={56} />
-          <span className="text-lg leading-tight font-semibold text-lime-600 md:text-xl dark:text-[#9FB816]">
+          <span className="text-lg font-semibold leading-tight text-lime-600 dark:text-[#9FB816] md:text-xl">
             HMHCPTI
           </span>
         </Link>
 
         {/* Navegación */}
-        <nav className="hidden items-center gap-6 text-black lg:flex dark:text-white">
+        <nav className="hidden items-center gap-6 text-black dark:text-white lg:flex">
           <Link href="/index" className="text-inherit hover:text-[#9FB816]">
             Inicio
           </Link>
