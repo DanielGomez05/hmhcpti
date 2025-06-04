@@ -4,6 +4,10 @@ import type { FooterItem, MainNavItem } from '@/app/types/layouts';
 
 export type SiteConfig = typeof siteConfig;
 
+const links = {
+  github: 'https://github.com/DanielGomez05/hmhcpti',
+};
+
 const homeNavs = [
   {
     title: '¿Qué es HMHCPTI?',
@@ -40,6 +44,7 @@ export const siteConfig = {
   description:
     'Herramienta para medir la huella de carbono de los Proyectos de TI',
   url: env.NEXT_PUBLIC_APP_URL,
+  links,
   mainNav: mainNavs,
   homeNavs: homeNavs,
   mobileNavs: mobileNavs,
