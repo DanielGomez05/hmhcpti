@@ -42,17 +42,25 @@ export default function Header() {
           <Link href="/acerca_de" className="text-inherit hover:text-[#9FB816]">
             ¿Qué es HMHCPTI?
           </Link>
-          <Link href="#" className="text-inherit hover:text-[#9FB816]">
-            Recursos
+          <Link href="/about" className="text-inherit hover:text-[#9FB816]">
+            ¿Quiénes somos?
           </Link>
-          <button className="rounded-md bg-slate-900 px-4 py-2 text-sm text-white hover:bg-slate-800">
-            Probar Ahora
-          </button>
-          <button className="rounded-md border border-slate-900 px-4 py-2 text-sm text-slate-900 hover:bg-slate-100 dark:border-white dark:text-white dark:hover:bg-slate-800">
-            <Link href="/iniciar_sesion" className="...">
+          <Link href="/mision" className="text-inherit hover:text-[#9FB816]">
+            Misión
+          </Link>
+          <Link href="/vision" className="text-inherit hover:text-[#9FB816]">
+            Visión
+          </Link>
+          <Link href="/crear_cuenta">
+            <button className="rounded-md bg-slate-900 px-4 py-2 text-sm text-white hover:bg-slate-800">
+              Probar Ahora
+            </button>
+          </Link>
+          <Link href="/iniciar_sesion">
+            <button className="rounded-md border border-slate-900 px-4 py-2 text-sm text-slate-900 hover:bg-slate-100 dark:border-white dark:text-white dark:hover:bg-slate-800">
               Iniciar Sesión
-            </Link>
-          </button>
+            </button>
+          </Link>
           <button
             aria-label="Cambiar tema"
             onClick={() => setDarkMode(!darkMode)}

@@ -128,21 +128,7 @@ export const About = () => {
       </section>
 
       {/* Sección: Metodología visual */}
-      <section className="bg-[#9FB816] py-20 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h3 className="mb-12 text-3xl font-bold">
-            Metodología para calcular la Huella de Carbono de los Proyectos de
-            TI
-          </h3>
-          <Image
-            src="/images/Metodologia.png"
-            alt="Metodología visual"
-            width={1200}
-            height={600}
-            className="mx-auto"
-          />
-        </div>
-      </section>
+      
     </>
   );
 };

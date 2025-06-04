@@ -10,15 +10,19 @@ const homeNavs = [
     href: '/#about',
   },
   {
-    title: 'Recursos',
-    href: '/#resources',
+    title: 'Misión',
+    href: '/#mision',
+  },
+  {
+    title: 'Visión',
+    href: '/#vision',
   },
 ] as MainNavItem[];
 
 const mainNavs = [
   {
     title: 'Inicio',
-    href: '/#hero',
+    href: '/#index',
   },
   ...homeNavs,
 ] as MainNavItem[];
