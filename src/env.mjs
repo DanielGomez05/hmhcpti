@@ -1,6 +1,11 @@
 import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
 
+const stringBoolean = z.coerce.string().transform((val) => {
+  return val === "true";
+}).default("false");
+
+
 export const env = createEnv({
   /**
    * Specify your server-side environment variables schema here. This way you can ensure the app
@@ -18,6 +23,8 @@ export const env = createEnv({
         'You forgot to change the default URL'
       ),
     CLERK_SECRET_KEY: z.string(),
+    DB_MIGRATING: stringBoolean,
+    DB_SEEDING: stringBoolean,
   },
 
   /**
@@ -37,6 +44,8 @@ export const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     DATABASE_URL: process.env.DATABASE_URL,
+    DB_MIGRATING: process.env.DB_MIGRATING,
+    DB_SEEDING: process.env.DB_SEEDING,
 
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
