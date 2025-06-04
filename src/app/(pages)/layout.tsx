@@ -4,6 +4,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { fontMono, fontSans } from '@/app/lib/fonts';
 import { cn } from '@/app/lib/utils';
 import { ThemeProvider } from '@/app/components/providers/theme-provider';
+import { TailwindIndicator } from '@/app/components/tailwind-indicator';
 
 import '@/app/styles/globals.css';
 
@@ -37,6 +38,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <TailwindIndicator />
           </ThemeProvider>
         </body>
       </html>
