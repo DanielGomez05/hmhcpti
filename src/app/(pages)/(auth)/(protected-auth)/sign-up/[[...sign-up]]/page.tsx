@@ -8,7 +8,7 @@ export default function SignUpPage() {
       {/* Imagen lateral */}
       <div className="hidden md:block h-full w-full">
         <img
-          src="/images/Registro.png"
+          src="/images/Registrar.png"
           alt="Registro"
           className="h-full w-full object-cover"
         />
