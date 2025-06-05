@@ -13,6 +13,7 @@
     "db:studio": "drizzle-kit studio --verbose"
   },
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^5.1.6",
     "@clerk/nextjs": "^6.20.0",
     "@hookform/resolvers": "^5.0.1",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.2",
