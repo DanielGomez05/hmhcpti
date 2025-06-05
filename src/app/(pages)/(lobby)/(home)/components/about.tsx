@@ -126,9 +126,6 @@ export const About = () => {
           </div>
         </div>
       </section>
-
-      {/* Sección: Metodología visual */}
-      
     </>
   );
 };
