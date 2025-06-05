@@ -3,6 +3,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 
 import { fontMono, fontSans } from '@/app/lib/fonts';
 import { cn } from '@/app/lib/utils';
+import { Toaster } from '@/app/components/ui/sonner';
 import { ThemeProvider } from '@/app/components/providers/theme-provider';
 import { TailwindIndicator } from '@/app/components/tailwind-indicator';
 
@@ -39,6 +40,7 @@ export default function RootLayout({
           >
             {children}
             <TailwindIndicator />
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>

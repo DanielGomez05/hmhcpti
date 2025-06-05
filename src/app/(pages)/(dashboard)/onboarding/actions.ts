@@ -26,7 +26,5 @@ export const completeOnboarding = async (input: Partial<CreateUser>) => {
     redirect(`/welcome`);
   } catch (error) {
     console.log(getErrorMessage(error));
-
-    redirect(`/`);
   }
 };
