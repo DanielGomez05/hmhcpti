@@ -1,2 +1,7 @@
-export { default as user, userRelations } from './user';
-export { default as company, companyRelations } from './company';
+export { default as users, usersRelations, roleEnum } from './users';
+export {
+  default as companies,
+  companiesRelations,
+  sectorEnum,
+  typeEnum,
+} from './companies';

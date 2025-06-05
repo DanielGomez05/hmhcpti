@@ -1,10 +1,16 @@
+import { config } from "dotenv";
+import { expand } from "dotenv-expand";
 import { createEnv } from '@t3-oss/env-nextjs';
+
 import { z } from 'zod';
 
 const stringBoolean = z.coerce.string().transform((val) => {
   return val === "true";
 }).default("false");
 
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+expand(config());
 
 export const env = createEnv({
   /**
