@@ -1,5 +1,3 @@
-import { env } from '@/env.mjs';
-
 import type { FooterItem, MainNavItem } from '@/app/types/layouts';
 
 export type SiteConfig = typeof siteConfig;
@@ -43,7 +41,7 @@ export const siteConfig = {
   name: 'HMHCPTI',
   description:
     'Herramienta para medir la huella de carbono de los Proyectos de TI',
-  url: env.NEXT_PUBLIC_APP_URL,
+  url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000', 
   links,
   mainNav: mainNavs,
   homeNavs: homeNavs,
