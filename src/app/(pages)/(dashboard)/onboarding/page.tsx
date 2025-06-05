@@ -2,43 +2,44 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useUser } from '@clerk/nextjs';
 
 import { completeOnboarding } from './actions';
 import { Shell } from '@/app/components/shells/shell';
 import { Role } from '@/server/lib/constants';
 
 export default function OnboardingPage() {
+  const { user, isLoaded } = useUser();
   const router = useRouter();
 
   useEffect(() => {
+    if (!isLoaded || !user) return;
+
+    // Evita ejecutar si ya está completo
+    const onboardingComplete = user.publicMetadata?.onboardingComplete;
+
+    if (onboardingComplete === true) {
+      router.push('/welcome');
+      return;
+    }
+
     const run = async () => {
-      const userId = localStorage.getItem('userId');
-      const firstName = localStorage.getItem('firstName') ?? undefined;
-      const lastName = localStorage.getItem('lastName') ?? '';
-      const email = localStorage.getItem('email');
-
-      if (!userId || !email) {
-        router.push('/');
-        return;
-      }
-
       try {
         await completeOnboarding({
-          id: userId,
-          firstName,
-          lastName,
-          email,
-          role: Role.SUSTAINABILITY
+          id: user.id,
+          firstName: user.firstName ?? undefined,
+          lastName: user.lastName ?? '',
+          email: user.emailAddresses[0]?.emailAddress ?? '',
+          role: Role.SUSTAINABILITY,
         });
+        router.push('/welcome');
       } catch (err) {
         console.error('Onboarding failed:', err);
-      } finally {
-        router.push('/');
       }
     };
 
     void run();
-  }, [router]);
+  }, [isLoaded, user, router]);
 
   return (
     <Shell className="h-[calc(100vh-4rem)] max-w-screen-sm">
