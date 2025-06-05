@@ -37,7 +37,7 @@ export default function OnboardingPage() {
       }
     };
 
-    run();
+    void run();
   }, [router]);
 
   return (
