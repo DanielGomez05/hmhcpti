@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { clerkClient } from '@clerk/clerk-sdk-node'; // ✅ uso correcto del SDK para server actions
+import { clerkClient } from '@clerk/clerk-sdk-node'; // ✅ SDK correcto para server
 
 import { createUserSchema, type CreateUser } from '@/core/user/domain';
 import { createUserUseCase } from '@/core/user/application';
@@ -20,10 +20,9 @@ export const completeOnboarding = async (input: Partial<CreateUser>) => {
       },
     });
 
-    revalidatePath(`/`);
-    redirect(`/welcome`);
+    revalidatePath('/');
+    redirect('/data-records/welcome'); // ✅ Redirección definitiva
   } catch (error) {
     console.log(getErrorMessage(error));
   }
 };
-
