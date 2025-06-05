@@ -1,45 +1,48 @@
-// /onboarding/page.tsx
 'use client';
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Role } from '@/server/lib/constants';
-
 
 import { completeOnboarding } from './actions';
 import { Shell } from '@/app/components/shells/shell';
-type UserInfo = {
-  id: string;
-  firstName?: string;
-  lastName?: string;
-  email: string;
-};
+import { Role } from '@/server/lib/constants';
 
-export default function OnboardingComponent({ user }: { user: UserInfo }) {
-
+export default function OnboardingPage() {
   const router = useRouter();
 
   useEffect(() => {
     const run = async () => {
+      const userId = localStorage.getItem('userId');
+      const firstName = localStorage.getItem('firstName') ?? undefined;
+      const lastName = localStorage.getItem('lastName') ?? '';
+      const email = localStorage.getItem('email');
+
+      if (!userId || !email) {
+        router.push('/');
+        return;
+      }
+
       try {
         await completeOnboarding({
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
+          id: userId,
+          firstName,
+          lastName,
+          email,
           role: Role.SUSTAINABILITY
         });
-      } catch (error) {
-        console.error('Onboarding failed:', error);
+      } catch (err) {
+        console.error('Onboarding failed:', err);
       } finally {
         router.push('/');
       }
     };
 
     run();
-  }, []);
+  }, [router]);
 
   return (
-    <Shell className="h-[calc(100vh-4rem)] max-w-screen-sm">Onboarding...</Shell>
+    <Shell className="h-[calc(100vh-4rem)] max-w-screen-sm">
+      Onboarding...
+    </Shell>
   );
 }
