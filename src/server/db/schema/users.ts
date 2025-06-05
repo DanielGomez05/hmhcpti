@@ -16,10 +16,10 @@ export const users = pgTable(
   'users',
   {
     id: varchar('id', { length: 32 }).primaryKey(),
-    firstName: varchar('first_name', { length: 50 }),
-    lastName: varchar('last_name', { length: 50 }),
-    email: varchar('email', { length: 100 }).unique(),
-    role: roleEnum('role'),
+    firstName: varchar('first_name', { length: 50 }).notNull(),
+    lastName: varchar('last_name', { length: 50 }).notNull(),
+    email: varchar('email', { length: 100 }).unique().notNull(),
+    role: roleEnum('role').notNull(),
   },
   (table) => [t.uniqueIndex('email_idx').on(table.email)]
 );

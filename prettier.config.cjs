@@ -12,7 +12,9 @@ module.exports = {
     '<THIRD_PARTY_MODULES>',
     '',
     '^types$',
-    '^@/utils(.*)$',
+    '^@/core/(.*)/domain(.*)$',
+    '^@/core/(.*)/application(.*)$',
+    '^@/core/(.*)/infrastructure(.*)$',
     '',
 
     '^@/server/types/(.*)$',

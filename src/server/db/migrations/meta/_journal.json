@@ -8,6 +8,13 @@
       "when": 1749103099863,
       "tag": "0000_busy_wiccan",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1749128379846,
+      "tag": "0001_smart_bucky",
+      "breakpoints": true
     }
   ]
 }
