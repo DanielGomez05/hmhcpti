@@ -18,28 +18,36 @@ interface SiteHeaderProps {
 export const SiteHeader = ({ mainNavItems, user }: SiteHeaderProps) => {
   return (
     <Header>
-      <div className="container flex h-16 items-center">
+      <div className="container flex h-16 items-center justify-between">
+        {/* Menú principal */}
         <MainNav items={mainNavItems ?? siteConfig.mainNav} />
         <MobileNav mainNavItems={mainNavItems ?? siteConfig.mobileNavs} />
-        <div className="flex flex-1 items-center justify-end space-x-4">
-          <nav className="flex items-center space-x-2">
-            <ThemeToggle />
-            {user ? (
-              <UserButton user={user} />
-            ) : (
+
+        {/* Acciones al lado derecho */}
+        <div className="flex items-center space-x-2">
+          <ThemeToggle />
+
+          {user ? (
+            <UserButton user={user} />
+          ) : (
+            <>
               <Link
                 href="/sign-in"
-                className={buttonVariants({
-                  size: 'sm',
-                })}
+                className={buttonVariants({ size: 'sm', variant: 'outline' })}
               >
                 Iniciar sesión
-                <span className="sr-only">Sign In</span>
               </Link>
-            )}
-          </nav>
+              <Link
+                href="/sign-up"
+                className={buttonVariants({ size: 'sm' })}
+              >
+                Probar ahora
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </Header>
   );
 };
+

@@ -52,7 +52,7 @@ export default function Terms() {
             </li>
 
             <li>
-              <strong>Limitación de Responsabilidad:</strong> Nuestro objetivo es proporcionar un servicio preciso y fiable; sin embargo, no garantizamos la exactitud de los cálculos de huella de carbono ni de las recomendaciones generadas. La aplicación y sus contenidos se ofrecen "tal cual", sin garantías de ningún tipo.
+              <strong>Limitación de Responsabilidad:</strong> Nuestro objetivo es proporcionar un servicio preciso y fiable; sin embargo, no garantizamos la exactitud de los cálculos de huella de carbono ni de las recomendaciones generadas. La aplicación y sus contenidos se ofrecen &quot;tal cual&quot;, sin garantías de ningún tipo.
               <br />
               <br />
               No asumimos responsabilidad por:
