@@ -18,7 +18,7 @@ export default function SignUpPage() {
       <div className="flex items-center justify-center p-8">
         <SignUp
           redirectUrl="/welcome"         // ← se usa al iniciar sesión si ya está logueado
-          afterSignUpUrl="/onboarding"      // ← se usa justo después de registrarse
+          afterSignUpUrl="/welcome"      // ← se usa justo después de registrarse
           appearance={{
             elements: {
               card: 'shadow-lg border rounded-xl w-full max-w-md bg-white',
