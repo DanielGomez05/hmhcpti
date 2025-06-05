@@ -1,15 +1,15 @@
 'use client';
 
 import * as React from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Icons } from '$/src/app/components/icons';
-import { TypeCompany } from '$/src/server/lib/constants';
 import {
   companySchema,
-  TCompany,
-} from '$/src/shared/validations/company.validation';
+  type TCompany,
+} from '@/shared/validations/company.validation';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
+
+import { CompanyType } from '@/server/lib/constants';
 
 import { Button } from '@/app/components/ui/button';
 import {
@@ -28,6 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/app/components/ui/select';
+import { Icons } from '@/app/components/icons';
 
 export const RegisterCompanyForm = () => {
   const [isPending, startTransition] = React.useTransition();
@@ -118,16 +119,16 @@ export const RegisterCompanyForm = () => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value={TypeCompany.MICRO}>
+                  <SelectItem value={CompanyType.MICRO}>
                     Microempresa (Tiene hasta 10 trabajadores)
                   </SelectItem>
-                  <SelectItem value={TypeCompany.SMALL}>
+                  <SelectItem value={CompanyType.SMALL}>
                     Pequeña empresa (Tiene entre 11 y 30 trabajadores)
                   </SelectItem>
-                  <SelectItem value={TypeCompany.MEDIUM}>
+                  <SelectItem value={CompanyType.MEDIUM}>
                     Mediana empresa (Tiene entre 31 y 100 trabajadores)
                   </SelectItem>
-                  <SelectItem value={TypeCompany.LARGE}>
+                  <SelectItem value={CompanyType.LARGE}>
                     Gran empresa (Tiene más de 250 trabajadores)
                   </SelectItem>
                 </SelectContent>
