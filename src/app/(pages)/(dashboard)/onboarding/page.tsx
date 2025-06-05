@@ -1,30 +1,45 @@
-import * as React from 'react';
-import { redirect } from 'next/navigation';
-import { auth, currentUser } from '@clerk/nextjs/server';
+// /onboarding/page.tsx
+'use client';
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Role } from '@/server/lib/constants';
 
-import { Shell } from '@/app/components/shells/shell';
 
 import { completeOnboarding } from './actions';
+import { Shell } from '@/app/components/shells/shell';
+type UserInfo = {
+  id: string;
+  firstName?: string;
+  lastName?: string;
+  email: string;
+};
 
-export default async function OnboardingComponent() {
-  const user = await currentUser();
-  const { userId, sessionClaims } = await auth();
+export default function OnboardingComponent({ user }: { user: UserInfo }) {
 
-  if (!user || !userId || sessionClaims?.metadata.onboardingComplete === true) {
-    redirect('/');
-  }
+  const router = useRouter();
 
-  await completeOnboarding({
-    id: userId,
-    firstName: user.firstName ?? undefined,
-    lastName: user.lastName ?? '',
-    email: user.emailAddresses[0].emailAddress,
-    role: Role.SUSTAINABILITY,
-  });
+  useEffect(() => {
+    const run = async () => {
+      try {
+        await completeOnboarding({
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          role: Role.SUSTAINABILITY
+        });
+      } catch (error) {
+        console.error('Onboarding failed:', error);
+      } finally {
+        router.push('/');
+      }
+    };
+
+    run();
+  }, []);
 
   return (
-    <Shell className="h-[calc(100vh-4rem)] max-w-screen-sm">Onboarding</Shell>
+    <Shell className="h-[calc(100vh-4rem)] max-w-screen-sm">Onboarding...</Shell>
   );
 }
