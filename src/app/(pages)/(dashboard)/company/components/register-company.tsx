@@ -1,15 +1,13 @@
 'use client';
 
 import * as React from 'react';
-import {
-  companySchema,
-  type TCompany,
-} from '@/shared/validations/company.validation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-import { CompanyType } from '@/server/lib/constants';
+import { CreateCompany, createCompanySchema } from '@/core/company/domain';
+
+import { CompanySector, CompanyType } from '@/server/lib/constants';
 
 import { Button } from '@/app/components/ui/button';
 import {
@@ -30,31 +28,39 @@ import {
 } from '@/app/components/ui/select';
 import { Icons } from '@/app/components/icons';
 
-export const RegisterCompanyForm = () => {
+import { resgisterCompany } from '../actions';
+
+interface RegisterCompanyFormProps {
+  userId: string;
+}
+
+type RegisterCompany = Omit<CreateCompany, 'userId'>;
+
+export const RegisterCompanyForm = ({ userId }: RegisterCompanyFormProps) => {
   const [isPending, startTransition] = React.useTransition();
 
-  const form = useForm<TCompany>({
-    resolver: zodResolver(companySchema),
-    defaultValues: {
-      name: '',
-      location: '',
-    },
+  const form = useForm<RegisterCompany>({
+    resolver: zodResolver(createCompanySchema.omit({ userId: true })),
   });
 
-  function onSubmit({ ...data }: TCompany) {
+  function onSubmit(company: RegisterCompany) {
     startTransition(async () => {
-      const toastId = toast.loading(`Agregando el producto ${data.name}...`);
+      const toastId = toast.loading(`Registrando empresa ${company.name}...`);
 
       try {
-        // await createProduct.mutateAsync(createData);
+        console.log({ company, userId });
 
-        toast.success(`Producto ${data.name} agregado correctamente.`, {
+        const { data, error } = await resgisterCompany({ ...company, userId });
+
+        if (error) return void toast.error('Ocurrio un error', { id: toastId });
+
+        toast.success(`Empresa ${data?.name} agregada correctamente.`, {
           id: toastId,
         });
 
         form.reset();
       } catch (error) {
-        toast.error('Ocurrio un error');
+        toast.error('Ocurrio un error', { id: toastId });
       }
     });
   }
@@ -76,7 +82,7 @@ export const RegisterCompanyForm = () => {
               </FormControl>
               <UncontrolledFormMessage
                 message={
-                  form.formState.errors.typeOfCompany &&
+                  form.formState.errors.name &&
                   'Ups! Debes elegir un nombre válido'
                 }
               />
@@ -98,7 +104,7 @@ export const RegisterCompanyForm = () => {
               </FormControl>
               <UncontrolledFormMessage
                 message={
-                  form.formState.errors.typeOfCompany &&
+                  form.formState.errors.location &&
                   'Ups! Debes escribir una dirección válida'
                 }
               />
@@ -108,7 +114,46 @@ export const RegisterCompanyForm = () => {
 
         <FormField
           control={form.control}
-          name="typeOfCompany"
+          name="sector"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Sector</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecciona tu tipo de empresa" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value={CompanySector.TRANSPORT}>
+                    Transporte
+                  </SelectItem>
+                  <SelectItem value={CompanySector.INDUSTRY}>
+                    Industria
+                  </SelectItem>
+                  <SelectItem value={CompanySector.ENERGY}>Energía</SelectItem>
+                  <SelectItem value={CompanySector.AGRICULTURE}>
+                    Agropecuario
+                  </SelectItem>
+                  <SelectItem value={CompanySector.RESIDENTIAL}>
+                    Comercio y Servicios
+                  </SelectItem>
+                  <SelectItem value={CompanySector.WASTE}>Residuos</SelectItem>
+                </SelectContent>
+              </Select>
+              <UncontrolledFormMessage
+                message={
+                  form.formState.errors.sector &&
+                  'Ups! Debes elegir un sector válido'
+                }
+              />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="type"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Tipo de empresa</FormLabel>
@@ -135,15 +180,18 @@ export const RegisterCompanyForm = () => {
               </Select>
               <UncontrolledFormMessage
                 message={
-                  form.formState.errors.typeOfCompany &&
+                  form.formState.errors.type &&
                   'Ups! Debes elegir un tipo de empresa válido'
                 }
               />
             </FormItem>
           )}
         />
+
         <Button
-          onClick={() => void form.trigger(['name', 'typeOfCompany'])}
+          onClick={() =>
+            void form.trigger(['name', 'location', 'type', 'sector'])
+          }
           className="w-fit"
           disabled={isPending}
         >
