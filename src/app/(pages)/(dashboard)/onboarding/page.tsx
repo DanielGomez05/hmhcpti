@@ -15,11 +15,10 @@ export default function OnboardingPage() {
   useEffect(() => {
     if (!isLoaded || !user) return;
 
-    // Evita ejecutar si ya está completo
     const onboardingComplete = user.publicMetadata?.onboardingComplete;
 
     if (onboardingComplete === true) {
-      router.push('/welcome');
+      router.push('/data-records/welcome'); // ✅ Redirección correcta
       return;
     }
 
@@ -32,7 +31,7 @@ export default function OnboardingPage() {
           email: user.emailAddresses[0]?.emailAddress ?? '',
           role: Role.SUSTAINABILITY,
         });
-        router.push('/welcome');
+        router.push('/data-records/welcome'); 
       } catch (err) {
         console.error('Onboarding failed:', err);
       }
