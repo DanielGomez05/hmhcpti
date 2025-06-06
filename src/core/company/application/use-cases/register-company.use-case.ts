@@ -15,7 +15,7 @@ export const registerCompanyUseCase = async (
     data: {
       name: input.name,
       location: input.location,
-      sector: input.type, // ← Asume que tu campo en schema.prisma es 'sector'
+      typeOfCompany: input.type, // ← Asume que tu campo en schema.prisma es 'sector'
       user: {
         connect: {
           id: input.userId,

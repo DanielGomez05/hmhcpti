@@ -11,7 +11,7 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
+  id String @id @default(cuid())
 
   firstName String?
   lastName  String?
@@ -25,14 +25,13 @@ model User {
 }
 
 model Company {
-  id       Int     @id @default(autoincrement())
-  name     String?
-  sector   String?
-  location String?
-  user     User    @relation(fields: [userId], references: [id])
-  userId   String
-
-  projects Project[]
+  id            Int       @id @default(autoincrement()) // ✅ correcto
+  name          String
+  location      String
+  typeOfCompany String
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  projects      Project[]
 }
 
 model Project {

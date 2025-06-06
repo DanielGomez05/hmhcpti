@@ -3,13 +3,14 @@
 import { prisma } from '@/server/lib/prisma'
 import { type TCompany } from '@/shared/validations/company.validation'
 
-export async function registerCompany(data: TCompany) {
+export async function registerCompany(data: TCompany, userId: string) {
   try {
     const newCompany = await prisma.company.create({
       data: {
         name: data.name,
         location: data.location,
         typeOfCompany: data.typeOfCompany,
+        userId: userId, // 🔥 Agregado aquí
       },
     });
 

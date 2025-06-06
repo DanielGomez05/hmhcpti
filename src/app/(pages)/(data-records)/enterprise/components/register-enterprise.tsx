@@ -1,5 +1,5 @@
 'use client';
-
+import { useAuth } from "@clerk/nextjs";
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
@@ -23,7 +23,7 @@ import { Icons } from '@/app/components/icons';
 export const RegisterEnterpriseForm = () => {
   const router = useRouter();
   const [isPending, startTransition] = React.useTransition();
-
+  const { userId } = useAuth();
   const form = useForm<TCompany>({
     resolver: zodResolver(companySchema),
     defaultValues: {
@@ -36,7 +36,7 @@ export const RegisterEnterpriseForm = () => {
     startTransition(async () => {
       const toastId = toast.loading(`Agregando empresa ${data.name}...`);
       try {
-        const res = await registerCompany(data);
+        const res = await registerCompany(data,userId!);
         if (res.success) {
           toast.success('Empresa registrada correctamente', { id: toastId });
           form.reset();
