@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,10 +10,146 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id        String    @id
+  firstName String?
+  lastName  String?
+  email     String    @unique
+  phone     String?
+  role      UserRole?
+  password  String?
+  createdAt DateTime  @default(now())
+
+  companies Company[]
+}
+
 model Company {
-  id             String   @id @default(cuid())
-  name           String
-  location       String
-  typeOfCompany  String
-  createdAt      DateTime @default(now())
+  id       Int     @id @default(autoincrement())
+  name     String?
+  sector   String?
+  location String?
+  user     User    @relation(fields: [userId], references: [id])
+  userId   String
+
+  projects Project[]
+}
+
+model Project {
+  id          String    @id
+  name        String?
+  description String?
+  startDate   DateTime?
+  endDate     DateTime?
+  company     Company   @relation(fields: [companyId], references: [id])
+  companyId   Int
+
+  calculation  AssetCalculation?
+  trafficLight ProjectTrafficLight?
+}
+
+model Catalog {
+  id        Int     @id @default(autoincrement())
+  assetType String?
+  assets    Asset[]
+}
+
+model Asset {
+  id                String    @id
+  name              String?
+  model             String?
+  serialNumber      String?
+  physicalLocation  String?
+  ipAddress         String?
+  status            String?
+  acquisitionDate   DateTime?
+  maintenanceDate   DateTime?
+  energyConsumption Decimal?
+  dailyUsageHours   Int?
+  acquisitionCost   Decimal?
+  catalog           Catalog   @relation(fields: [catalogId], references: [id])
+  catalogId         Int
+
+  history      AssetHistory[]
+  calculations AssetCalculation[]
+}
+
+model AssetHistory {
+  id              Int       @id @default(autoincrement())
+  acquisitionDate DateTime?
+  maintenanceDate DateTime?
+  details         String?
+  dailyUsageHours Int?
+  annualUsageDays Int?
+  lifecycle       String?
+  asset           Asset     @relation(fields: [assetId], references: [id])
+  assetId         String
+}
+
+model Calculator {
+  id                String   @id
+  energyConsumption Decimal?
+  carbonFootprint   Decimal?
+
+  calculations AssetCalculation[]
+}
+
+model AssetCalculation {
+  id             Int        @id @default(autoincrement())
+  project        Project    @relation(fields: [projectId], references: [id])
+  projectId      String     @unique
+  asset          Asset      @relation(fields: [assetId], references: [id])
+  assetId        String
+  calculator     Calculator @relation(fields: [calculatorId], references: [id])
+  calculatorId   String
+  usageHours     Int?
+  energyConsumed Decimal?
+
+  recommendations RecommendationForAsset[]
+}
+
+model Recommendation {
+  id              String              @id
+  title           String?
+  description     String?
+  type            RecommendationType?
+  estimatedImpact Decimal?
+
+  forAssets RecommendationForAsset[]
+}
+
+model RecommendationForAsset {
+  id               Int              @id @default(autoincrement())
+  recommendation   Recommendation   @relation(fields: [recommendationId], references: [id])
+  recommendationId String
+  calculation      AssetCalculation @relation(fields: [calculationId], references: [id])
+  calculationId    Int
+  reason           String?
+}
+
+model ProjectTrafficLight {
+  id            Int           @id @default(autoincrement())
+  projectId     String        @unique
+  project       Project       @relation(fields: [projectId], references: [id])
+  level         TrafficLevel?
+  lowThreshold  Decimal?
+  highThreshold Decimal?
+}
+
+// ENUMS
+enum UserRole {
+  ADMIN
+  IT_ENGINEER
+  SUSTAINABILITY_ENGINEER
+}
+
+enum RecommendationType {
+  REDUCTION
+  OPTIMIZATION
+  HARDWARE_CHANGE
+}
+
+enum TrafficLevel {
+  GREEN
+  YELLOW
+  RED
 }
