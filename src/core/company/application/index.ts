@@ -1,1 +1,2 @@
-export * from './use-cases/register-company.use-case';
+export * from '@/core/company/application/use-cases/create-user.use-case';
+
