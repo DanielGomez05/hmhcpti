@@ -8,9 +8,5 @@ export default async function ProtectedAuthLayout({
 
   console.log({ userId });
 
-  if (userId) {
-    redirect('/');
-  }
-
   return <>{children}</>;
 }
