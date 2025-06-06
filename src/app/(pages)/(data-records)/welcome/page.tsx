@@ -1,81 +1,63 @@
-'use client';
-
 import Link from 'next/link';
 
-export default function BienvenidaPage() {
+export default function WelcomePage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-[#001E2B] text-[#001E2B] dark:text-white px-4 py-10">
-      <section className="max-w-6xl mx-auto text-center space-y-6">
-        <h1 className="text-3xl md:text-4xl font-bold">
+    <div className="min-h-screen flex flex-col justify-between bg-white text-black">
+
+      {/* Contenido principal */}
+      <main className="px-10 py-8 text-center">
+        <h1 className="text-2xl font-semibold mb-2">
           ¡Bienvenido a nuestra Herramienta para medir la Huella de Carbono para los Proyectos de TI!
         </h1>
-        <p className="text-lg">Estamos ansiosos por empezar.</p>
-        <p className="text-md">
+        <p className="text-gray-700 mb-8">Estamos ansiosos por empezar.</p>
+        <p className="text-lg font-medium mb-12">
           Necesitaremos que nos proporciones la siguiente información:
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-left mt-10">
-          {/* EMPRESA */}
-          <div className="border p-4 rounded-lg shadow">
-            <h2 className="text-xl font-semibold mb-2">Tipo de Empresa</h2>
-            <p className="mb-4 text-sm">
-              En esta sección necesitaremos que nos proporcione los datos necesarios sobre el tipo de empresa. Para determinar un semáforo comparativo.
-            </p>
-            <Link
-              href="/entreprise"
-              className="inline-block bg-[#001E2B] text-white px-4 py-2 rounded hover:bg-[#0a2c3a]"
-            >
-              Registrar Empresa
-            </Link>
-          </div>
-
-          {/* ACTIVOS */}
-          <div className="border p-4 rounded-lg shadow">
-            <h2 className="text-xl font-semibold mb-2">Recursos Tecnológicos</h2>
-            <p className="mb-4 text-sm">
-              En esta sección necesitaremos que nos proporciones los datos necesarios para obtener el consumo eléctrico total de los activos tecnológicos.
-            </p>
-            <Link
-              href="/actives"
-              className="inline-block bg-[#001E2B] text-white px-4 py-2 rounded hover:bg-[#0a2c3a]"
-            >
-              Registrar Activos
-            </Link>
-          </div>
-
-          {/* PROYECTOS */}
-          <div className="border p-4 rounded-lg shadow">
-            <h2 className="text-xl font-semibold mb-2">Proyectos</h2>
-            <p className="mb-4 text-sm">
-              En esta sección necesitaremos que nos proporciones los datos necesarios de los proyectos TI de la empresa. Para vincular los activos que corresponden.
-            </p>
-            <Link
-              href="/proyects"
-              className="inline-block bg-[#001E2B] text-white px-4 py-2 rounded hover:bg-[#0a2c3a]"
-            >
-              Registrar Proyectos
-            </Link>
-          </div>
-
-          {/* USUARIOS */}
-          <div className="border p-4 rounded-lg shadow">
-            <h2 className="text-xl font-semibold mb-2">Usuarios adicionales</h2>
-            <p className="mb-4 text-sm">
-              En esta sección necesitaremos que nos proporciones los datos de los usuarios que podrán agregar activos o proyectos aparte de usted.
-            </p>
-            <Link
-              href="/users"
-              className="inline-block bg-[#001E2B] text-white px-4 py-2 rounded hover:bg-[#0a2c3a]"
-            >
-              Registrar Usuarios
-            </Link>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {[
+            {
+              title: 'Tipo de Empresa',
+              desc: 'Proporciónanos los datos necesarios sobre el tipo de empresa.',
+              link: '/enterprise',
+              button: 'Registrar Empresa',
+            },
+            {
+              title: 'Recursos Tecnológicos',
+              desc: 'Dinos el consumo eléctrico total de los activos tecnológicos.',
+              link: '/actives',
+              button: 'Registrar Activos',
+            },
+            {
+              title: 'Proyectos',
+              desc: 'Proporciónanos los datos necesarios de los proyectos TI.',
+              link: '/projects',
+              button: 'Registrar Proyectos',
+            },
+            {
+              title: 'Usuarios adicionales',
+              desc: 'Proporciónanos los datos de usuarios que podrán agregar activos o proyectos.',
+              link: '/users',
+              button: 'Registrar Usuarios',
+            },
+          ].map((item, idx) => (
+            <div key={idx} className="border p-6 rounded shadow-sm">
+              <h2 className="text-lg font-semibold mb-2">{item.title}</h2>
+              <p className="text-sm text-gray-700 mb-4">{item.desc}</p>
+              <Link href={item.link}>
+                <button className="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-800">
+                  {item.button}
+                </button>
+              </Link>
+            </div>
+          ))}
         </div>
 
-        <p className="text-sm mt-8 border-t pt-4">
-          Nota al usuario: Es necesario que cubra los 4 rubros iniciales. Al completarlos, la vista bienvenida se quedará eliminada definitivamente y se abrirán los demás campos.
+        <p className="text-xs text-gray-500 mt-12">
+          Nota al usuario: Es necesario que cubras los 4 rubros iniciales. Al completarlos, la vista de bienvenida se eliminará y se abrirán los demás campos.
         </p>
-      </section>
-    </main>
+      </main>
+    </div>
   );
 }
+

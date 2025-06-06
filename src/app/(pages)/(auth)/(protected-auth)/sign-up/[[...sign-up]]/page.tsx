@@ -17,8 +17,8 @@ export default function SignUpPage() {
       {/* Formulario de Clerk */}
       <div className="flex items-center justify-center p-8">
         <SignUp
-          redirectUrl="/welcome"         // ← se usa al iniciar sesión si ya está logueado
-          afterSignUpUrl="/welcome"      // ← se usa justo después de registrarse
+          redirectUrl="/src/app/(pages)/(data-records)/welcome/page.tsx"         // ← se usa al iniciar sesión si ya está logueado
+          afterSignUpUrl="/src/app/(pages)/(data-records)/welcome/page.tsx"      // ← se usa justo después de registrarse
           appearance={{
             elements: {
               card: 'shadow-lg border rounded-xl w-full max-w-md bg-white',
