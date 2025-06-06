@@ -3,7 +3,8 @@
 import { revalidatePath } from 'next/cache';
 
 import { createCompanySchema, type CreateCompany } from '@/core/company/domain';
-import { registerCompanyUseCase } from '@/core/company/application';
+import { registerCompanyUseCase } from '@/core/company/application/use-cases/register-company.use-case';
+
 
 import { getErrorMessage } from '@/app/lib/handle-error';
 
